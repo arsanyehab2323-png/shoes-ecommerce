@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Log in to your SNEAKERS HUB account.">
+  <title>Login | SNEAKERS HUB</title>
+
+  <!-- Emoji favicon (no image file needed) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Apply the saved theme immediately to avoid a color flash on page load -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('sneakershub_theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (error) { /* localStorage not available */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Extra styles for the creative login (loaded AFTER style.css) -->
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo" aria-label="SNEAKERS HUB home">
+        <span class="logo-mark">SH</span>
+        <span class="logo-text">SNEAKERS<strong>HUB</strong></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Sneakers</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <form class="header-search" id="headerSearchForm" role="search">
+          <input type="search" id="headerSearchInput" placeholder="Search sneakers..." aria-label="Search sneakers" autocomplete="off">
+          <button type="submit" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
+
+        <!-- Color theme picker (theme.js makes these buttons work) -->
+        <div class="theme-picker" id="themePicker" role="group" aria-label="Choose website color theme">
+          <button type="button" class="theme-swatch" data-theme-option="black" aria-label="Black theme" title="Black"></button>
+          <button type="button" class="theme-swatch" data-theme-option="white" aria-label="White theme" title="White"></button>
+          <button type="button" class="theme-swatch" data-theme-option="red" aria-label="Red theme" title="Red"></button>
+          <button type="button" class="theme-swatch" data-theme-option="blue" aria-label="Blue theme" title="Blue"></button>
+          <button type="button" class="theme-swatch" data-theme-option="green" aria-label="Green theme" title="Green"></button>
+        </div>
+
+        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge" id="wishlistCount">0</span>
+        </a>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+
+        <a href="login.html" class="btn btn-small btn-outline" id="authLink">Login</a>
+
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ============ CREATIVE LOGIN ============
+         data-state: intro (sneaker in the middle) -> open (sneaker on the left, form on the right)
+         login.js changes the state when the visitor taps the sneaker. -->
+    <section class="login-stage" id="loginStage" data-state="intro">
+      <div class="container login-inner">
+
+        <!-- ---- LEFT: the sneaker ---- -->
+        <div class="login-left">
+
+          <button type="button" class="login-shoe" id="loginShoe" aria-expanded="false" aria-controls="loginPanel" aria-label="Tap the sneaker to open the login form">
+            <span class="login-shoe-circle"></span>
+            <img class="login-shoe-img" id="loginShoeImg" data-shoe-base="red"
+                 src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80"
+                 alt="A sneaker. Tap it to open the login form.">
+            <span class="login-tap" id="loginTap">&#128070; Tap the sneaker to log in</span>
+          </button>
+
+          <!-- The text under the sneaker (login.js can show the chosen product here) -->
+          <div class="login-caption" id="loginCaption">
+            <h2 id="loginCaptionTitle">Welcome back</h2>
+            <p id="loginCaptionText">Log in to view sneakers, save favorites and check out.</p>
+          </div>
+        </div>
+
+        <!-- ---- RIGHT: the login form ---- -->
+        <div class="login-panel" id="loginPanel">
+          <div class="auth-card" style="max-width: 480px; margin-inline: auto;">
+
+            <h1 class="auth-title">Log in</h1>
+            <p class="auth-subtitle">Enter your details to continue.</p>
+
+            <!-- Messages (login.js fills this box and shows it when needed) -->
+            <div class="alert alert-error" id="loginAlert" role="alert" hidden></div>
+
+            <form id="loginForm" novalidate>
+
+              <div class="form-group">
+                <label for="loginIdentifier">Username or email</label>
+                <input type="text" id="loginIdentifier" name="identifier" placeholder="demo or you@example.com" autocomplete="username" required>
+                <span class="form-error" id="identifierError"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div class="password-field">
+                  <input type="password" id="loginPassword" name="password" placeholder="Your password" autocomplete="current-password" required>
+                  <button type="button" class="toggle-password" id="togglePassword" aria-label="Show password" aria-pressed="false">Show</button>
+                </div>
+                <span class="form-error" id="passwordError"></span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="loginButton">Log In</button>
+            </form>
+
+            <div class="auth-links">
+              <a href="#" id="forgotLink">Forgot your password?</a>
+              <a href="register.html" id="registerLink">Create a new account</a>
+            </div>
+
+            <!-- Forgot password (demo only). login.js shows or hides this box. -->
+            <div id="forgotPanel" hidden>
+              <form id="forgotForm" novalidate>
+                <div class="form-group" style="margin-top: 1.2rem;">
+                  <label for="forgotEmail">Enter your account email</label>
+                  <input type="email" id="forgotEmail" name="email" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+                <button type="submit" class="btn btn-outline btn-block">Send reset link</button>
+              </form>
+              <p class="form-message" id="forgotMessage" role="status"></p>
+            </div>
+
+            <!-- Demo information -->
+            <div class="auth-note">
+              <strong>Demo account:</strong> username <code>demo</code> and password <code>Demo@1234</code>.
+              <button type="button" class="btn btn-ghost btn-small" id="fillDemo" style="margin-top: 0.6rem;">Fill demo account</button>
+              <br><br>
+              <strong>Important:</strong> this is a frontend demonstration only. Real login needs a backend server
+              with secure password handling. Never use a real password here.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="SNEAKERS HUB home">
+          <span class="logo-mark">SH</span>
+          <span class="logo-text">SNEAKERS<strong>HUB</strong></span>
+        </a>
+        <p>Premium sneakers for every step. Pick your color, pick your pair.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="products.html">All Sneakers</a>
+        <a href="products.html?category=running">Running</a>
+        <a href="products.html?category=lifestyle">Lifestyle</a>
+        <a href="products.html?category=basketball">Basketball</a>
+        <a href="products.html?category=skate">Skate</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="currentYear">2026</span> SNEAKERS HUB. Demo project for learning purposes.</p>
+      <p>Frontend demo only. No real payments or real accounts.</p>
+    </div>
+  </footer>
+
+  <!-- Toast messages appear here (ui.js) -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Scripts: the ORDER matters. Each file uses the ones above it. -->
+  <script src="js/data.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

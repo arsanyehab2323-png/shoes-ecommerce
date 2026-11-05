@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SNEAKERS HUB - Premium sneakers in every color. Shop running, lifestyle, basketball and skate shoes.">
+  <title>SNEAKERS HUB | Premium Sneakers</title>
+
+  <!-- Emoji favicon (no image file needed) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Apply the saved theme immediately to avoid a color flash on page load -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('sneakershub_theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (error) { /* localStorage not available */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Styles for the HERO SHOE (home page only).
+       The shoe colors are CSS variables, and each theme sets its own colors,
+       so the shoe itself changes color when you pick a theme. -->
+  <style>
+    /* The shoe drawing + default colors (black theme) */
+    .hero-shoe {
+      --shoe-main: #1d1d21;
+      --shoe-dark: #0a0a0b;
+      --shoe-tongue: #2d2d33;
+      --shoe-accent: #ffffff;
+      --shoe-sole: #f3f3f5;
+      --shoe-lace: #e9e9ee;
+
+      position: relative;
+      width: 94%;
+      height: auto;
+      overflow: visible;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-shoe .shoe-main    { fill: var(--shoe-main); }
+    .hero-shoe .shoe-dark    { fill: var(--shoe-dark); }
+    .hero-shoe .shoe-tongue  { fill: var(--shoe-tongue); }
+    .hero-shoe .shoe-accent  { fill: var(--shoe-accent); }
+    .hero-shoe .shoe-sole    { fill: var(--shoe-sole); }
+    .hero-shoe .shoe-lace    { stroke: var(--shoe-lace); stroke-width: 7; stroke-linecap: round; fill: none; }
+    .hero-shoe .shoe-outsole { stroke: var(--shoe-dark); stroke-width: 10; stroke-linecap: round; fill: none; }
+    .hero-shoe .shoe-fade    { opacity: 0.8; }
+
+    /* Smooth color change */
+    .hero-shoe path,
+    .hero-shoe line {
+      transition: fill 0.6s ease, stroke 0.6s ease;
+    }
+
+    /* One color palette per theme */
+    [data-theme="white"] .hero-shoe {
+      --shoe-main: #f4f4f6;
+      --shoe-dark: #c3c3cd;
+      --shoe-tongue: #ffffff;
+      --shoe-accent: #111113;
+      --shoe-sole: #e3e3e9;
+      --shoe-lace: #2a2a2e;
+    }
+    [data-theme="red"] .hero-shoe {
+      --shoe-main: #e11d2e;
+      --shoe-dark: #8f0f1b;
+      --shoe-tongue: #ff5663;
+      --shoe-accent: #ffffff;
+      --shoe-sole: #fff1f2;
+      --shoe-lace: #ffffff;
+    }
+    [data-theme="blue"] .hero-shoe {
+      --shoe-main: #2f6bff;
+      --shoe-dark: #16358f;
+      --shoe-tongue: #6f9aff;
+      --shoe-accent: #ffffff;
+      --shoe-sole: #eef3ff;
+      --shoe-lace: #ffffff;
+    }
+    [data-theme="green"] .hero-shoe {
+      --shoe-main: #16a34a;
+      --shoe-dark: #0b5f2a;
+      --shoe-tongue: #4ade80;
+      --shoe-accent: #ffffff;
+      --shoe-sole: #effcf3;
+      --shoe-lace: #ffffff;
+    }
+
+    /* The circle behind the shoe: a contrasting background for each theme */
+    .hero-circle { box-shadow: 0 0 90px var(--glow); }
+    [data-theme="black"] .hero-circle { background: linear-gradient(145deg, #f5f5f5, #8d8d96); }
+    [data-theme="white"] .hero-circle { background: linear-gradient(145deg, #2a2a2e, #0b0b0c); }
+    [data-theme="red"]   .hero-circle { background: linear-gradient(145deg, #5a1119, #240a0e); }
+    [data-theme="blue"]  .hero-circle { background: linear-gradient(145deg, #12306e, #07122b); }
+    [data-theme="green"] .hero-circle { background: linear-gradient(145deg, #0f5a30, #05180e); }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo" aria-label="SNEAKERS HUB home">
+        <span class="logo-mark">SH</span>
+        <span class="logo-text">SNEAKERS<strong>HUB</strong></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Sneakers</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <form class="header-search" id="headerSearchForm" role="search">
+          <input type="search" id="headerSearchInput" placeholder="Search sneakers..." aria-label="Search sneakers" autocomplete="off">
+          <button type="submit" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
+
+        <!-- Color theme picker (theme.js makes these buttons work) -->
+        <div class="theme-picker" id="themePicker" role="group" aria-label="Choose website color theme">
+          <button type="button" class="theme-swatch" data-theme-option="black" aria-label="Black theme" title="Black"></button>
+          <button type="button" class="theme-swatch" data-theme-option="white" aria-label="White theme" title="White"></button>
+          <button type="button" class="theme-swatch" data-theme-option="red" aria-label="Red theme" title="Red"></button>
+          <button type="button" class="theme-swatch" data-theme-option="blue" aria-label="Blue theme" title="Blue"></button>
+          <button type="button" class="theme-swatch" data-theme-option="green" aria-label="Green theme" title="Green"></button>
+        </div>
+
+        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge" id="wishlistCount">0</span>
+        </a>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+
+        <a href="login.html" class="btn btn-small btn-outline" id="authLink">Login</a>
+
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <span class="eyebrow">New Season 2026</span>
+          <h1>Step Into <span class="accent">Your Color.</span></h1>
+          <p>Premium sneakers for running, the street and the court. Pick your favorite color and watch the whole store change with you.</p>
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-primary">Shop Sneakers</a>
+            <a href="#featured" class="btn btn-outline">See Featured</a>
+          </div>
+          <ul class="hero-stats">
+            <li><strong>12+</strong><span>Signature Models</span></li>
+            <li><strong>5</strong><span>Color Themes</span></li>
+            <li><strong>4.8★</strong><span>Average Rating</span></li>
+          </ul>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-circle"></div>
+
+          <!-- The hero sneaker: a drawing whose colors follow the selected theme -->
+          <svg class="hero-shoe" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A sneaker that changes color with the selected theme">
+
+            <!-- ground shadow -->
+            <ellipse cx="330" cy="354" rx="265" ry="14" fill="rgba(0,0,0,0.35)"></ellipse>
+
+            <!-- outsole (thin dark line under the shoe) -->
+            <path class="shoe-outsole" d="M62 337 L556 337"></path>
+
+            <!-- upper (main body of the shoe) -->
+            <path class="shoe-main" d="M62 300 C56 245 68 192 92 150 C100 138 118 136 135 142 C160 150 180 160 200 150 L232 98 C240 88 258 88 266 98 L292 140 C340 175 400 195 450 215 C510 235 565 250 594 284 L594 300 Z"></path>
+
+            <!-- heel counter (darker back part) -->
+            <path class="shoe-dark shoe-fade" d="M62 300 C56 245 68 192 92 150 C104 140 120 140 132 146 C126 190 124 250 132 300 Z"></path>
+
+            <!-- toe cap (darker front part) -->
+            <path class="shoe-dark shoe-fade" d="M468 222 C520 238 570 254 594 284 L594 300 L478 300 C486 272 482 244 468 222 Z"></path>
+
+            <!-- inside of the collar -->
+            <path class="shoe-dark" d="M95 150 C104 138 120 137 135 142 C160 150 180 160 200 150 C180 172 150 176 120 170 C108 166 98 160 95 150 Z"></path>
+
+            <!-- tongue -->
+            <path class="shoe-tongue" d="M200 150 L232 98 C240 88 258 88 266 98 L292 140 C270 152 232 158 200 150 Z"></path>
+
+            <!-- side stripe -->
+            <path class="shoe-accent" d="M150 292 C200 236 300 214 408 268 C330 250 250 256 150 292 Z"></path>
+
+            <!-- laces -->
+            <line class="shoe-lace" x1="292" y1="140" x2="264" y2="174"></line>
+            <line class="shoe-lace" x1="335" y1="164" x2="307" y2="198"></line>
+            <line class="shoe-lace" x1="375" y1="182" x2="347" y2="216"></line>
+            <line class="shoe-lace" x1="412" y1="198" x2="384" y2="232"></line>
+            <line class="shoe-lace" x1="445" y1="212" x2="417" y2="246"></line>
+
+            <!-- midsole (white-ish sole, drawn on top of the upper) -->
+            <path class="shoe-sole" d="M48 300 C48 318 60 332 90 334 L520 334 C570 334 600 318 604 296 C590 282 560 276 520 274 L100 274 C70 274 48 282 48 300 Z"></path>
+          </svg>
+
+          <div class="hero-badge">
+            <strong>-20%</strong>
+            <span>Launch week offer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BRAND STRIP ============ -->
+    <section class="brand-strip" aria-label="Our brands">
+      <div class="container brand-strip-inner">
+        <span>AEROLITE</span>
+        <span>NIMBUS</span>
+        <span>VOLTIX</span>
+        <span>URBANE</span>
+        <span>STRATOS</span>
+      </div>
+    </section>
+
+    <!-- ============ CATEGORIES ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Browse</span>
+          <h2>Shop by Category</h2>
+        </div>
+
+        <div class="category-grid">
+          <a href="products.html?category=running" class="category-card">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" alt="Running sneakers" loading="lazy">
+            <div class="category-label"><h3>Running</h3><span>Shop now →</span></div>
+          </a>
+          <a href="products.html?category=lifestyle" class="category-card">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80" alt="Lifestyle sneakers" loading="lazy">
+            <div class="category-label"><h3>Lifestyle</h3><span>Shop now →</span></div>
+          </a>
+          <a href="products.html?category=basketball" class="category-card">
+            <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=600&q=80" alt="Basketball sneakers" loading="lazy">
+            <div class="category-label"><h3>Basketball</h3><span>Shop now →</span></div>
+          </a>
+          <a href="products.html?category=skate" class="category-card">
+            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=600&q=80" alt="Skate sneakers" loading="lazy">
+            <div class="category-label"><h3>Skate</h3><span>Shop now →</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED PRODUCTS ============ -->
+    <section class="section section-alt" id="featured">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <span class="eyebrow">Hand-picked</span>
+            <h2>Featured Sneakers</h2>
+          </div>
+          <a href="products.html" class="link-arrow">View all sneakers →</a>
+        </div>
+
+        <!-- home.js fills this grid with product cards -->
+        <div class="product-grid" id="featuredGrid">
+          <noscript>Please enable JavaScript to view our sneakers.</noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLOR THEME SHOWCASE ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Signature Feature</span>
+          <h2>Pick a Color. Change Everything.</h2>
+          <p>Choose a color below and the whole website adapts: header, buttons, cards, footer and more. Your choice is remembered next time you visit.</p>
+        </div>
+
+        <div class="theme-showcase" id="themeShowcase">
+          <button type="button" class="theme-card" data-theme-option="black">
+            <span class="theme-card-dot" data-dot="black"></span>
+            <strong>Midnight Black</strong>
+            <small>Black &amp; dark gray</small>
+          </button>
+          <button type="button" class="theme-card" data-theme-option="white">
+            <span class="theme-card-dot" data-dot="white"></span>
+            <strong>Cloud White</strong>
+            <small>White &amp; light gray</small>
+          </button>
+          <button type="button" class="theme-card" data-theme-option="red">
+            <span class="theme-card-dot" data-dot="red"></span>
+            <strong>Racing Red</strong>
+            <small>Red &amp; dark red</small>
+          </button>
+          <button type="button" class="theme-card" data-theme-option="blue">
+            <span class="theme-card-dot" data-dot="blue"></span>
+            <strong>Ocean Blue</strong>
+            <small>Blue &amp; navy</small>
+          </button>
+          <button type="button" class="theme-card" data-theme-option="green">
+            <span class="theme-card-dot" data-dot="green"></span>
+            <strong>Forest Green</strong>
+            <small>Green &amp; dark green</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BENEFITS ============ -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="benefits-grid">
+          <div class="benefit">
+            <span class="benefit-icon" aria-hidden="true">🚚</span>
+            <h3>Free Shipping</h3>
+            <p>On every order over $100.</p>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon" aria-hidden="true">↩️</span>
+            <h3>30-Day Returns</h3>
+            <p>Not the right fit? Send them back.</p>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon" aria-hidden="true">✅</span>
+            <h3>100% Authentic</h3>
+            <p>Every pair is checked before it ships.</p>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon" aria-hidden="true">🔒</span>
+            <h3>Secure Checkout</h3>
+            <p>Demo checkout only. No real payments.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROMO BANNER ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="promo-banner">
+          <div>
+            <span class="eyebrow">Members Only</span>
+            <h2>Join SNEAKERS HUB and unlock early drops.</h2>
+            <p>Create a free account to save your favorites and check out faster.</p>
+          </div>
+          <a href="register.html" class="btn btn-primary">Create Account</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Reviews</span>
+          <h2>Loved by Sneakerheads</h2>
+        </div>
+
+        <div class="testimonial-grid">
+          <figure class="testimonial">
+            <blockquote>The color theme feature is genuinely fun, and the sneakers are even better in person.</blockquote>
+            <figcaption><strong>Alex M.</strong><span>★★★★★</span></figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>Super comfortable for long runs. Fast delivery and an easy size exchange.</blockquote>
+            <figcaption><strong>Sara K.</strong><span>★★★★★</span></figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>Clean design, great prices, and the wishlist makes it easy to compare pairs.</blockquote>
+            <figcaption><strong>Daniel R.</strong><span>★★★★☆</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="newsletter">
+          <h2>Never Miss a Drop</h2>
+          <p>Get new releases and exclusive offers straight to your inbox. (Demo form: nothing is actually sent.)</p>
+          <form class="newsletter-form" id="newsletterForm" novalidate>
+            <label for="newsletterEmail" class="sr-only">Email address</label>
+            <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+          <p class="form-message" id="newsletterMessage" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="SNEAKERS HUB home">
+          <span class="logo-mark">SH</span>
+          <span class="logo-text">SNEAKERS<strong>HUB</strong></span>
+        </a>
+        <p>Premium sneakers for every step. Pick your color, pick your pair.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="products.html">All Sneakers</a>
+        <a href="products.html?category=running">Running</a>
+        <a href="products.html?category=lifestyle">Lifestyle</a>
+        <a href="products.html?category=basketball">Basketball</a>
+        <a href="products.html?category=skate">Skate</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="currentYear">2026</span> SNEAKERS HUB. Demo project for learning purposes.</p>
+      <p>Frontend demo only. No real payments or real accounts.</p>
+    </div>
+  </footer>
+
+  <!-- Toast messages appear here (ui.js) -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Scripts: the ORDER matters. Each file uses the ones above it. -->
+  <script src="js/data.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

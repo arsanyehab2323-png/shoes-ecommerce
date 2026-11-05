@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SNEAKERS HUB sneaker details: choose your color and size.">
+  <title>Sneaker Details | SNEAKERS HUB</title>
+
+  <!-- Emoji favicon (no image file needed) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Apply the saved theme immediately to avoid a color flash on page load -->
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('sneakershub_theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (error) { /* localStorage not available */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<!-- data-protected: auth.js sends visitors who are not logged in to login.html,
+     and brings them back to this exact product after they log in. -->
+<body data-protected>
+
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+      <a href="index.html" class="logo" aria-label="SNEAKERS HUB home">
+        <span class="logo-mark">SH</span>
+        <span class="logo-text">SNEAKERS<strong>HUB</strong></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Sneakers</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <form class="header-search" id="headerSearchForm" role="search">
+          <input type="search" id="headerSearchInput" placeholder="Search sneakers..." aria-label="Search sneakers" autocomplete="off">
+          <button type="submit" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
+
+        <!-- Color theme picker (theme.js makes these buttons work) -->
+        <div class="theme-picker" id="themePicker" role="group" aria-label="Choose website color theme">
+          <button type="button" class="theme-swatch" data-theme-option="black" aria-label="Black theme" title="Black"></button>
+          <button type="button" class="theme-swatch" data-theme-option="white" aria-label="White theme" title="White"></button>
+          <button type="button" class="theme-swatch" data-theme-option="red" aria-label="Red theme" title="Red"></button>
+          <button type="button" class="theme-swatch" data-theme-option="blue" aria-label="Blue theme" title="Blue"></button>
+          <button type="button" class="theme-swatch" data-theme-option="green" aria-label="Green theme" title="Green"></button>
+        </div>
+
+        <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge" id="wishlistCount">0</span>
+        </a>
+
+        <a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="badge" id="cartCount">0</span>
+        </a>
+
+        <a href="login.html" class="btn btn-small btn-outline" id="authLink">Login</a>
+
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ============ PRODUCT DETAILS ============
+         product-details.js reads ?id=3 from the address bar and fills everything below. -->
+    <div class="container" id="detailsWrapper">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="padding-top: 1.5rem;">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="products.html">Sneakers</a>
+        <span aria-hidden="true">/</span>
+        <a href="products.html" id="crumbCategory">Category</a>
+        <span aria-hidden="true">/</span>
+        <span id="crumbName">Sneaker</span>
+      </nav>
+    </div>
+
+    <div class="container details-layout" id="detailsLayout">
+
+      <!-- ---- Gallery ---- -->
+      <div class="gallery">
+        <div class="gallery-main">
+          <img id="mainImage" alt="Sneaker photo">
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+
+      <!-- ---- Product information ---- -->
+      <div class="details-info">
+        <span class="details-brand" id="detailBrand"></span>
+        <h1 id="detailName">Loading...</h1>
+
+        <div class="product-rating" style="margin-top: 0.5rem;">
+          <span class="stars" id="detailStars" aria-hidden="true"></span>
+          <span class="rating-count" id="detailRating"></span>
+        </div>
+
+        <p class="details-price">
+          <span id="detailPrice"></span>
+          <span class="product-old-price" id="detailOldPrice"></span>
+        </p>
+
+        <p class="details-desc" id="detailDesc"></p>
+
+        <!-- Color -->
+        <div class="option-block">
+          <div class="option-label">Color <span id="selectedColorName"></span></div>
+          <div class="product-colors" id="detailColors" role="group" aria-label="Choose a color" style="gap: 0.7rem;"></div>
+        </div>
+
+        <!-- Size -->
+        <div class="option-block">
+          <div class="option-label">Size (EU) <span id="sizeHint">Select a size</span></div>
+          <div class="size-list" id="sizeList" role="group" aria-label="Choose a size"></div>
+          <span class="form-error" id="sizeError" role="alert"></span>
+        </div>
+
+        <!-- Stock -->
+        <div class="option-block">
+          <span class="stock-status in-stock" id="stockStatus"></span>
+        </div>
+
+        <!-- Quantity and buttons -->
+        <div class="details-actions">
+          <div class="qty-control" role="group" aria-label="Quantity">
+            <button type="button" class="qty-btn" id="qtyMinus" aria-label="Decrease quantity">&minus;</button>
+            <span class="qty-value" id="qtyValue" aria-live="polite">1</span>
+            <button type="button" class="qty-btn" id="qtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+
+          <button type="button" class="btn btn-primary" id="addToCartBtn">Add to Cart</button>
+          <button type="button" class="btn btn-outline" id="detailWishlist" aria-pressed="false">&#9825; Add to Wishlist</button>
+        </div>
+
+        <div class="details-meta">
+          <span>🚚 Free shipping on orders over $100</span>
+          <span>↩️ Free returns within 30 days</span>
+          <span>✅ 100% authentic, checked before shipping</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- Shown instead of the layout when the id in the address is wrong ---- -->
+    <div class="container" id="notFound" hidden>
+      <div class="empty-state" style="margin: 4rem 0;">
+        <h3>Sneaker not found</h3>
+        <p>We could not find the sneaker you are looking for.</p>
+        <a class="btn btn-primary" href="products.html">Browse all sneakers</a>
+      </div>
+    </div>
+
+    <!-- ============ RELATED PRODUCTS ============ -->
+    <section class="section section-alt" id="relatedSection" hidden>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">More to explore</span>
+          <h2>You May Also Like</h2>
+        </div>
+        <div class="product-grid" id="relatedGrid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="SNEAKERS HUB home">
+          <span class="logo-mark">SH</span>
+          <span class="logo-text">SNEAKERS<strong>HUB</strong></span>
+        </a>
+        <p>Premium sneakers for every step. Pick your color, pick your pair.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="products.html">All Sneakers</a>
+        <a href="products.html?category=running">Running</a>
+        <a href="products.html?category=lifestyle">Lifestyle</a>
+        <a href="products.html?category=basketball">Basketball</a>
+        <a href="products.html?category=skate">Skate</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="currentYear">2026</span> SNEAKERS HUB. Demo project for learning purposes.</p>
+      <p>Frontend demo only. No real payments or real accounts.</p>
+    </div>
+  </footer>
+
+  <!-- Toast messages appear here (ui.js) -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Scripts: the ORDER matters. Each file uses the ones above it. -->
+  <script src="js/data.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/product-details.js"></script>
+</body>
+</html>
